@@ -1,0 +1,15 @@
+{
+	"description": "随便写个来练练手",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wxdab527ed4a71eaef",
+	"projectname": "small",
+	"miniprogramRoot": "./dist",
+	"condition": {}
+}
