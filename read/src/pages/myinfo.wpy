@@ -1,38 +1,23 @@
 <style lang="less">
-.swiper{
-  border-bottom: 1px solid green;
-  padding: 5px;
-  width:100%;
-}
-.swiper_image {
-  margin: 6rpx;
-}
-.item_image {
-  width:100%;
-  display:flex;
-  justify-content:center;
-  height:80%;
-  image {
-    width: 100%;
-    border-radius:10px;
-    height:80%;
+  .userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-}
-swiper {
-  display:block;
-  width:100%;
-}
+
+  .userinfo-avatar {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+  }
+
+  .userinfo-nickname {
+    color: #aaa;
+  }
 </style>
 <template>
   <view class="container">
-    <swiper indicator-color='gray'
-    indicator-active-color='green' autoplay='true' interval='5000' duration='500'>
-      <block wx:for="{{imgUrl}}" wx:key="index">
-        <swiper-item class="item_image">
-        <image src='{{item}}' class='swiper_image' mode="aspectFill"></image>
-        </swiper-item>
-      </block>
-    </swiper>
+    <view>123</view>
   </view>
 </template>
 
@@ -46,12 +31,7 @@ swiper {
     components = {
     }
     data = {
-      imgUrl: [
-          'https://qidian.qpic.cn/qidian_common/349573/4f9f78e1563d037cb399ede1d299dc87/0',
-          'https://qidian.qpic.cn/qidian_common/349573/7f4233f2b2b561b1c1db7de04a6ce578/0',
-          'https://qidian.qpic.cn/qidian_common/349573/d0d8fc89c8c8835cf5823d574eb8aaa1/0',
-          'https://qidian.qpic.cn/qidian_common/349573/6f5ed3e5d5a313ea7167ef1da006b8c1/0'
-      ]
+
     }
 
     computed = {
