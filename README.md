@@ -1,2 +1,1 @@
-# wexinSmallGame
-搞一个微信小游戏试试
+# wepy+koa2+mangoose
