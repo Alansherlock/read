@@ -1,11 +1,27 @@
 <style lang="less">
-.swiper{
-  border-bottom: 1px solid green;
-  padding: 5px;
-  width:100%;
+//搜索框样式
+.novel-name {
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 96%;
+  height:72rpx;
+  color: #ccc;
+  background-color: rgb(245, 240, 240);
+  margin:24rpx 16rpx 8rpx 16rpx;
+  padding:0 16rpx;
+  box-sizing: border-box;
+  font-size:14px;
+  border-radius: 16rpx;
+  .search-novel {
+    width:24rpx;
+    height:24rpx;
+    margin-right:16rpx;
+  }
 }
+//轮播样式
 .swiper_image {
-  margin: 6rpx;
+  margin: 16rpx;
 }
 .item_image {
   width:100%;
@@ -15,16 +31,61 @@
   image {
     width: 100%;
     border-radius:10px;
-    height:80%;
+    height:92%;
   }
 }
+//对于轮播组件的样式修改
 swiper {
   display:block;
   width:100%;
 }
+//tab 样式
+.tab-select {
+  margin: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  height:128rpx;
+  width:96%;
+  view {
+    width:25%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size:12px;
+    margin-bottom:12rpx;
+    color: #ccc;
+  }
+  image {
+    height:48rpx;
+    width:48rpx;
+  }
+  .radius {
+    width:86rpx;
+    height:86rpx;
+    border-radius: 50%;
+  }
+  .tab-select-first {
+    background-color: rgb(194, 241, 194);
+  }
+  .tab-select-second {
+    background-color: rgb(245, 209, 155);
+  }
+  .tab-select-third {
+    background-color: rgb(211, 232, 247);
+  }
+  .tab-select-fourth {
+    background-color: rgb(241, 194, 220);
+  }
+}
 </style>
 <template>
   <view class="container">
+    <!-- 这里是要placeholder显示最热的小说 -->
+    <view class="novel-name">
+      <image class="search-novel" src="../images/search-novel.png"></image>
+      {{novelName}}</view>
     <swiper indicator-color='gray'
     indicator-active-color='green' autoplay='true' interval='5000' duration='500'>
       <block wx:for="{{imgUrl}}" wx:key="index">
@@ -33,6 +94,32 @@ swiper {
         </swiper-item>
       </block>
     </swiper>
+    <view class="tab-select">
+        <view>
+          <view class="radius tab-select-first">
+              <image src="../images/tab/tab-sort.png"></image>
+          </view>
+          排行榜
+        </view>
+        <view>
+          <view class="radius tab-select-second">
+              <image src="../images/tab/tab-vip.png"></image>
+          </view>
+          VIP
+        </view>
+        <view>
+          <view class="radius tab-select-third">
+              <image src="../images/tab/tab-type.png"></image>
+          </view>
+          分类
+        </view>
+        <view>
+          <view class="radius tab-select-fourth">
+              <image src="../images/tab/tab-book.png"></image>
+          </view>
+          书单
+        </view>
+    </view>
   </view>
 </template>
 
@@ -51,6 +138,25 @@ swiper {
           'https://qidian.qpic.cn/qidian_common/349573/7f4233f2b2b561b1c1db7de04a6ce578/0',
           'https://qidian.qpic.cn/qidian_common/349573/d0d8fc89c8c8835cf5823d574eb8aaa1/0',
           'https://qidian.qpic.cn/qidian_common/349573/6f5ed3e5d5a313ea7167ef1da006b8c1/0'
+      ],
+      novelName:'太古神王',
+      tabList:[
+        {
+          name:'排行榜',
+          icon:'../images/tab/tab-sort.png'
+        },
+        {
+          name:'VIP',
+          icon:'../images/tab/tab-vip.png'
+        },
+        {
+          name:'分类',
+          icon:'../images/tab/tab-type.png'
+        },
+        {
+          name:'书单',
+          icon:'../images/tab/tab-book.png'
+        },
       ]
     }
 
