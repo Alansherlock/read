@@ -5,10 +5,11 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-
 const index = require('./routes/index')
 const users = require('./routes/users')
-
+const novelList = require('./routes/novelist')
+//更改下router的方式,引入后全部配置到这里
+let routers = [index, users, novelList];
 // error handler
 onerror(app)
 
@@ -35,6 +36,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(novelList.routes(), novelList.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
