@@ -16,11 +16,14 @@
   }
 </style>
 <template>
-  <view class="container">123</view>
+  <view class="container">
+    <view></view>
+  </view>
 </template>
 
 <script>
   import wepy from 'wepy'
+  import { category } from '../request/api.js'
   export default class Index extends wepy.page {
     config = {
       navigationBarTitleText: '追书神器',
@@ -29,7 +32,7 @@
     components = {
     }
     data = {
-
+      cateList:[]
     }
 
     computed = {
@@ -89,23 +92,14 @@
         console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
       }
     }
-
+    async getList() {
+      let data   = await category();
+      this.cateList = data;
+      console.log(category());
+      this.$apply();
+    }
     onLoad() {
-      let self = this
-      this.$parent.getUserInfo(function (userInfo) {
-        if (userInfo) {
-          self.userInfo = userInfo
-        }
-        self.normalTitle = '标题已被修改'
-
-        self.setTimeoutTitle = '标题三秒后会被修改'
-        setTimeout(() => {
-          self.setTimeoutTitle = '到三秒了'
-          self.$apply()
-        }, 3000)
-
-        self.$apply()
-      })
+      this.getList();
     }
   }
 </script>

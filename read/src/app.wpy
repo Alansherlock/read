@@ -12,11 +12,10 @@
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'
-
-
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/category',
       'pages/index',
       'pages/myinfo',
       'pages/books-goods'
@@ -34,13 +33,13 @@ export default class extends wepy.app {
       borderStyle: 'black',
       list: [
         {
-            pagePath: 'pages/index',
+            pagePath: 'pages/books-goods',
             selectedIconPath: './images/tabbars/book-select.png',
             iconPath:'./images/tabbars/book.png',
             text: '书架'
         },
         {
-            pagePath: 'pages/books-goods',
+            pagePath: 'pages/index',
             selectedIconPath:'./images/tabbars/book-city-select.png',
             iconPath:'./images/tabbars/book-city .png',
             text: '书城'

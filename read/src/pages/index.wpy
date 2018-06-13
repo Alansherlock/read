@@ -108,10 +108,12 @@ swiper {
           VIP
         </view>
         <view>
-          <view class="radius tab-select-third">
-              <image src="../images/tab/tab-type.png"></image>
-          </view>
-          分类
+          <navigator url="./category" hover-class="navigator-hover">
+            <view class="radius tab-select-third">
+                <image src="../images/tab/tab-type.png"></image>
+            </view>
+          </navigator>
+            分类
         </view>
         <view>
           <view class="radius tab-select-fourth">
