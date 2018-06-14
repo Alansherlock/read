@@ -6,3 +6,4 @@
 3. koa需要在node高版本运行，需要安装node版本切换工具
 4. 连接数据库在model的时候就已经安装，则连接的时候直接引入model文件即可
 5. 爬虫使用的是cheerio和superagent这两个，目前还未写入定时爬取数据
+6. 开始的时候引入ajax文件没有配置好promise，引入了wepy提供的启用promise文件后就可以获取到返回的数据了
