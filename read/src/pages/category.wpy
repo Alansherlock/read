@@ -1,23 +1,35 @@
-<style lang="less">
-  .userinfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .userinfo-avatar {
-    width: 80rpx;
-    height: 80rpx;
-    border-radius: 50%;
-  }
-
-  .userinfo-nickname {
-    color: #aaa;
-  }
-</style>
 <template>
-  <view class="container">
-    <view></view>
+  <view class="category_container">
+    <view class="container_left">
+        <block item="item" wx:for="{{cateList}}" wx:key="index" >
+          <view  class="category_title {{current==item.title?'bg':''}}">
+            <view @tap="selectType" data-title="{{item.title}}" class="title {{current==item.title?'light':''}}">{{item.title}}</view>
+            <view class="line {{current==item.title?'line':''}}"></view>
+          </view>
+        </block>
+    </view>
+    <view class="container_right">
+        <block item="item" wx:for="{{cateList}}" wx:key="index" >
+            <view class="type_title">
+              <view class="type_title_line">
+                <view class="line"></view>
+              </view>
+              <view>
+                <image class="star" src="../images/star.png"></image>
+                {{item.title}}
+                <image class="star" src="../images/star.png"></image>
+              </view>
+              <view class="type_title_line">
+                <view class="line"></view>
+              </view>
+            </view>
+            <block item="item" wx:for="{{item.novelList}}" wx:key="index" >
+                <view class="novel_type">
+
+                </view>
+            </block>
+        </block>
+    </view>
   </view>
 </template>
 
@@ -32,7 +44,8 @@
     components = {
     }
     data = {
-      cateList:[]
+      cateList:[],
+      current:'男生'
     }
 
     computed = {
@@ -42,6 +55,10 @@
     }
 
     methods = {
+      selectType(e) {
+        this.current = e.target.dataset.title;
+        console.log(e);
+      },
       plus () {
         this.mynum++
       },
@@ -85,17 +102,10 @@
         console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
       }
     }
-
-    events = {
-      'index-emit': (...args) => {
-        let $event = args[args.length - 1]
-        console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
-      }
-    }
     async getList() {
       let data   = await category();
-      this.cateList = data;
-      console.log(category());
+      this.cateList = data.data[0].novelTypeList;
+      console.log(this.cateList);
       this.$apply();
     }
     onLoad() {
@@ -103,3 +113,95 @@
     }
   }
 </script>
+<style lang="less">
+.category_container {
+  width:100vw;
+  height:100vh;
+  display: flex;
+  justify-content: flex-start;
+  color:#3b3b3b;
+  .container_left {
+    position: fixed;
+    display: block;
+    width:15%;
+    height:95vh;
+    border-right:2rpx solid rgb(219, 212, 212);
+    margin-bottom:40rpx;
+    margin-left:20rpx;
+    .category_title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size:24rpx;
+      height:72rpx;
+      margin:10rpx 0;
+      box-sizing: border-box;
+      position:relative;
+      &:first-child {
+        margin-top:0;
+      }
+    }
+    .title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height:36rpx;
+      width:100%;
+      box-sizing: border-box;
+    }
+    .light{
+      border-left:4rpx solid #FA4150;
+    }
+    .bg {
+      background-color: #f8f7fc;
+    }
+    .line {
+      width:60rpx;
+      height:2rpx;
+      border-bottom:2rpx solid rgb(219, 212, 212);
+      position: absolute;
+      bottom:-2rpx;
+      left:50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .container_right {
+    margin-left:18%;
+    width:85%;
+    height:100%;
+    padding:20rpx 20rpx 0;
+    .type_title {
+      display:flex;
+      justify-content: space-between;
+      font-weight: 100;
+      font-size:28rpx;
+      color:#ccc;
+    }
+    .star {
+      width:16rpx;
+      height:16rpx;
+    }
+    .type_title_line {
+      width:38%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .line {
+        width:100%;
+        height:2rpx;
+        background-color: rgb(238, 234, 234);
+      }
+    }
+    .novel_type {
+      display:inline-flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width:274rpx;
+      height:140rpx;
+      border-radius: 8rpx;
+      background-color: #f8f7fc;
+      margin-right:12rpx;
+    }
+  }
+}
+</style>
