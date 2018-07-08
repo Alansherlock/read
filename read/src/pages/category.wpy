@@ -25,7 +25,7 @@
             </view>
             <block item="item" wx:for="{{item.novelList}}" wx:key="index" >
                 <view class="novel_type">
-
+                  
                 </view>
             </block>
         </block>
@@ -104,6 +104,7 @@
     }
     async getList() {
       let data   = await category();
+      console.log(data);
       this.cateList = data.data[0].novelTypeList;
       console.log(this.cateList);
       this.$apply();

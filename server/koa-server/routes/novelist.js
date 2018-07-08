@@ -4,7 +4,7 @@ const categoryDTO = require('../../database/model/category')
 router.prefix('/v1')
 categoryDTO.categoryList.find({}, async (err, doc) => {
     router.get('/novelList', function (ctx, next) {
-        ctx.body = doc
+        ctx.body = "wuyu";
     })
 })
 
